@@ -29,6 +29,11 @@ Your job is to deliver the code and from now on you are the responsible go-to-pe
 
 You can make any modifications or suggestions for what you see fit. Fork this repository and deliver your results via a pull-request or send us an e-mail. You could also create a gist, for privacy reasons, and send us the link.
 
+### ❗️ Important notes
+
+- Emphasis on _This is a solution you will have to put your name on_. Is your solution something that you would be confident running in production?
+- **You don't have to write a fully fledged solution**. However, do write comments explaining your intention and what you would have done if you had the time.
+
 ## Help I dont know C# or Java
 
 No worries! We accept submissions in other languages as well.
