@@ -15,6 +15,17 @@ sudo apt install openjdk-21-jre-headless
 ./gradlew test
 ./gradlew bootRun
 
+
+## playwright
+
+
+sudo npx playwright install-deps
+
+Workaround for installing npm using nvm:
+sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/node" "/usr/local/bin/node"
+sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/npm" "/usr/local/bin/npm"
+sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/npx" "/usr/local/bin/npx"
+
 # TODO:s
 
 - [X] Add Spring and Gradle
