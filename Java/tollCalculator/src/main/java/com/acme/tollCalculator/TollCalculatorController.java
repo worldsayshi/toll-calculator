@@ -1,5 +1,6 @@
 package com.acme.tollCalculator;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,11 +18,20 @@ public class TollCalculatorController {
     private final VehicleDeserializer vehicleDeserializer;
 
     public TollCalculatorController(
-        TollCalculator tollCalculator,
-        VehicleDeserializer vehicleDeserializer
+        TollCalculator tollCalculator
+        , VehicleDeserializer vehicleDeserializer
     ) {
         this.tollCalculator = tollCalculator;
         this.vehicleDeserializer = vehicleDeserializer;
+    }
+
+    @GetMapping("/get-toll-fee")
+    public int getTollFee(
+        @RequestParam(value = "vehicle") String vehicle,
+        @RequestParam(value = "dates") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date[] dates
+    ) {
+        var v = vehicleDeserializer.getVehicleFromString(vehicle);
+        return tollCalculator.getTollFee(v, dates);
     }
     
 	@GetMapping("/")
@@ -34,9 +44,15 @@ public class TollCalculatorController {
         return vehicleDeserializer.getTypeNames();
     }
 
-    @GetMapping("/get-toll-fee")
-    public int getTollFee(@RequestParam Vehicle vehicle, @RequestParam(value = "date[]") Date[] dates) {
-        return tollCalculator.getTollFee(vehicle, dates);
+    @GetMapping("/current-date")
+    public String getCurrentDate() {
+        return new Date().toString();
     }
+
+    @GetMapping("/parse-date")
+    public String parseDate(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date date) {
+        return date.toString();
+    }
+    
 
 }

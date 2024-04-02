@@ -24,5 +24,4 @@ public class TollCalculatorApplication {
 	public VehicleDeserializer vehicleTypeRegistry() {
 		return new VehicleDeserializer();
 	}
-
 }

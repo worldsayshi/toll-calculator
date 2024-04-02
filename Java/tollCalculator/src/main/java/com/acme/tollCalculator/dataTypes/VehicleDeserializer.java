@@ -25,6 +25,7 @@ public class VehicleDeserializer extends JsonDeserializer<Vehicle> {
 
     @Override
     public Vehicle deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+        
         var text = p.getText();
         var vehicle = getVehicleFromString(text);
         return vehicle;
@@ -34,7 +35,7 @@ public class VehicleDeserializer extends JsonDeserializer<Vehicle> {
         return vehicleTypeMap.keySet().toArray(new String[0]);
     }
 
-    private Vehicle getVehicleFromString(String vehicleType) {
+    public Vehicle getVehicleFromString(String vehicleType) {
         if (vehicleType.toLowerCase().contains(Motorbike.typeName)) {
             return new Motorbike();
         }
