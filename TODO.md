@@ -26,8 +26,11 @@ sudo apt install openjdk-21-jre-headless
 - Make it deployable to k8s?
 - Add playwright tests
 
-- Extension comments: Storage use case
-  - Add database storage requirements
-  - Add database deployment
-  - Add backup
-  - Add code for database use case
+- Extensions:
+    - Storage use case
+        - Add database storage requirements
+        - Add database deployment
+        - Add backup
+        - Add code for database use case
+    - ChatGPT API assistant
+        - swagger + chatgpt => ... => profit

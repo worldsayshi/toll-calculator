@@ -4,6 +4,8 @@ package com.acme.tollCalculator;
 import java.util.*;
 import java.util.concurrent.*;
 
+import com.acme.tollCalculator.dataTypes.Vehicle;
+
 public class TollCalculator {
 
   /**

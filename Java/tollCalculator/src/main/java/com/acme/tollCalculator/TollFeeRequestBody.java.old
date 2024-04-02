@@ -1,0 +1,15 @@
+package com.acme.tollCalculator;
+
+import java.util.*;
+
+import com.acme.tollCalculator.dataTypes.Vehicle;
+
+public class TollFeeRequestBody {
+    public final Vehicle vehicle;
+    public final List<Date> dates;
+
+    public TollFeeRequestBody(Vehicle vehicle, List<Date> dates) {
+        this.vehicle = vehicle;
+        this.dates = dates;
+    }
+}
