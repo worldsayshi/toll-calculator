@@ -23,4 +23,8 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	jvmArgs("-XX:+ShowCodeDetailsInExceptionMessages")
+    testLogging {
+        setExceptionFormat("full")
+    }
 }
