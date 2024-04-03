@@ -1,4 +1,4 @@
-## How the app was created:
+## How the app was initially created:
 - https://start.spring.io/
 - add spring web dependency
 - chmod +x gradlew
@@ -31,12 +31,15 @@ sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/npx" "/usr/local/bin/npx"
 - [X] Add Spring and Gradle
 - [X] Add swagger
 - [X] Add initial unit tests
-- [ ] Add Dockerfile
+- [X] Add Dockerfile
 - [ ] Fix failing test
 - [/] Add more unit tests
     (verify that the requirements are filled with the tests)
-- Make it deployable to k8s?
-- Add playwright tests
+- [/] Make it deployable to k8s?
+    - [ ] Verify it is up and running
+- [X] Add playwright tests
+- [ ] Fix RestController types and annotations to make swagger spec more useful
+- [ ] Add more playwright tests?
 
 - Extensions:
     - Storage use case

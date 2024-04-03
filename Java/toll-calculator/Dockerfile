@@ -4,4 +4,3 @@ COPY ./build/libs/tollCalculator.jar tollCalculator.jar
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app/tollCalculator.jar"]
-# ENTRYPOINT ["/bin/bash"]
