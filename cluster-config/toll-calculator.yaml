@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: apps
+  name: toll-calculator
+spec:
+  selector:
+    app: toll-calculator
+  ports:
+    - name: web
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: apps
+  name: toll-calculator
+spec:
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: toll-calculator
+  template:
+    metadata:
+      labels:
+        app: toll-calculator
+    spec:
+      containers:
+      - name: toll-calculator
+        image: pfredelius/toll-calculator:0.0.5
+        ports:
+        - containerPort: 8080
+---

@@ -41,3 +41,15 @@
 # List tags in registry
 ./scripts/last-build-tag.sh tollCalculator
 ```
+
+# Run locally
+
+Assumption: docker desktop installed on WSL2
+
+- Install kubeconfig:
+    cp /mnt/c/Users/$(whoami)/.kube/config ~/.kube/docker-k8s.config
+    export KUBECONFIG=$HOME/.kube/docker-k8s.config
+- Check connection:
+    kubectl cluster-info
+- Deploy:
+    kubectl apply -k cluster-config
