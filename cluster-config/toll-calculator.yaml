@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: toll-calculator
-        image: pfredelius/toll-calculator:0.0.5
+        image: pfredelius/toll-calculator:0.0.7
         ports:
         - containerPort: 8080
 ---
