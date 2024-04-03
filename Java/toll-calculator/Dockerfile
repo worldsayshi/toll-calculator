@@ -1,4 +1,4 @@
-FROM openjdk:21-jdk-alpine
+FROM openjdk:21-jdk
 WORKDIR /app
 COPY /app/build/libs/tollCalculator-0.0.1-SNAPSHOT.jar tollCalculator.jar
 
