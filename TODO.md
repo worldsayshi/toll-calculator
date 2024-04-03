@@ -29,11 +29,12 @@ sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/npx" "/usr/local/bin/npx"
 # TODO:s
 
 - [X] Add Spring and Gradle
-- [ ] Add swagger
-- [ ] Add initial unit tests
+- [X] Add swagger
+- [X] Add initial unit tests
 - [ ] Add Dockerfile
-- Add more unit tests
-- (verify that the requirements are filled with the tests)
+- [ ] Fix failing test
+- [/] Add more unit tests
+    (verify that the requirements are filled with the tests)
 - Make it deployable to k8s?
 - Add playwright tests
 
