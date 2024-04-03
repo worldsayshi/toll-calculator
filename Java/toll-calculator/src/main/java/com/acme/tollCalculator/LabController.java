@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.acme.tollCalculator.dataTypes.VehicleDeserializer;
+import com.acme.tollCalculator.TollCalculator.Vehicle;
 
 import java.util.*;
+import java.util.stream.*;
 
 /**
  * Temporary endpoints meant for experimentation.
@@ -16,22 +17,16 @@ import java.util.*;
 @RestController
 public class LabController {
 
-    private final VehicleDeserializer vehicleDeserializer;
-
-    public LabController(
-        VehicleDeserializer vehicleDeserializer
-    ) {
-        this.vehicleDeserializer = vehicleDeserializer;
-    }
-
     @GetMapping("/")
 	public String index() {
 		return "Greetings and hello from Spring Boot!";
 	}
 
     @GetMapping("/vehicle-types")
-    public String[] getVehicleTypes() {
-        return vehicleDeserializer.getTypeNames();
+    public List<String> getVehicleTypes() {
+        return Stream.of(Vehicle.values())
+            .map(Vehicle::getType)
+            .collect(Collectors.toList());
     }
 
     @GetMapping("/current-date")

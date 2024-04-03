@@ -6,8 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.acme.tollCalculator.dataTypes.VehicleDeserializer;
-
 @SpringBootApplication
 public class TollCalculatorApplication {
 
@@ -20,8 +18,8 @@ public class TollCalculatorApplication {
 		return new TollCalculator();
 	}
 
-	@Bean
-	public VehicleDeserializer vehicleTypeRegistry() {
-		return new VehicleDeserializer();
-	}
+	// @Bean
+	// public VehicleDeserializer vehicleTypeRegistry() {
+	// 	return new VehicleDeserializer();
+	// }
 }

@@ -3,7 +3,7 @@ package com.acme.tollCalculator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.acme.tollCalculator.dataTypes.Vehicle;
+import com.acme.tollCalculator.TollCalculator.Vehicle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +17,7 @@ public class TollCalculatorTests {
     @Test
     public void testFeesVaryByTimeOfDay() {
         TollCalculator calculator = new TollCalculator();
-        Vehicle vehicle = new TestVehicle("Car"); // Assuming TestVehicle implements Vehicle
+        Vehicle vehicle = Vehicle.CAR;
         
         // Example: specify times that should incur different fees
         Date lowFeeTime = createTime(10, 0); // Time that should incur a low fee (8 SEK)
@@ -30,7 +30,7 @@ public class TollCalculatorTests {
     @Test
     public void testMaximumFeePerDay() {
         TollCalculator calculator = new TollCalculator();
-        Vehicle vehicle = new TestVehicle("Car");
+        Vehicle vehicle = Vehicle.CAR;
         
         // Example: specify multiple times throughout a day that would exceed the maximum daily fee
         Date[] dates = {createTime(7, 0), createTime(8, 30), createTime(9, 30), createTime(15, 0), createTime(17, 0)};
@@ -41,7 +41,7 @@ public class TollCalculatorTests {
     @Test
     public void testChargeOncePerHour() {
         TollCalculator calculator = new TollCalculator();
-        Vehicle vehicle = new TestVehicle("Car");
+        Vehicle vehicle = Vehicle.CAR;
         
         // Example: times within the same hour, expect to be charged for the highest fee only
         Date withinSameHour1 = createTime(8, 0);
@@ -54,7 +54,7 @@ public class TollCalculatorTests {
     @Test
     public void testFeeFreeVehicleTypes() {
         TollCalculator calculator = new TollCalculator();
-        Vehicle feeFreeVehicle = new TestVehicle("Emergency"); // Assuming "Emergency" type vehicles are fee-free
+        Vehicle feeFreeVehicle = Vehicle.EMERGENCY; // Assuming "Emergency" type vehicles are fee-free
         
         Date anyTime = createTime(10, 0); // Any time that would normally incur a fee
         
@@ -64,7 +64,7 @@ public class TollCalculatorTests {
     @Test
     public void testWeekendsAndHolidaysAreFeeFree() {
         TollCalculator calculator = new TollCalculator();
-        Vehicle vehicle = new TestVehicle("Car");
+        Vehicle vehicle = Vehicle.CAR;
         
         // Example: a weekend date and a holiday date
         Date weekendDate = createSpecificDate(2023, Calendar.SATURDAY, 10); // Assuming this is a Saturday
@@ -81,20 +81,6 @@ public class TollCalculatorTests {
 
     private Date createSpecificDate(int year, int month, int day) {
         return Date.from(Instant.parse(String.format("%04d-%02d-%02dT10:00:00Z", year, month, day)));
-    }
-    
-    // Assuming TestVehicle is a simple implementation of the Vehicle interface for testing purposes
-    class TestVehicle implements Vehicle {
-        private String type;
-
-        public TestVehicle(String type) {
-            this.type = type;
-        }
-
-        @Override
-        public String getType() {
-            return type;
-        }
     }
 }
 

@@ -51,5 +51,9 @@ Assumption: docker desktop installed on WSL2
     export KUBECONFIG=$HOME/.kube/docker-k8s.config
 - Check connection:
     kubectl cluster-info
+- Make sure that no other service is running on port 80!
 - Deploy:
     kubectl apply -k cluster-config
+- Try it (quotes are important):
+    Try the below url in the browser or use curl in Powershell. It will likely not work from WSL:
+    curl "http://localhost/get-toll-fee?vehicle=Car&dates=2000-10-31T01:30:00.000-05:00"

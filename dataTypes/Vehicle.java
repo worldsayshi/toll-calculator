@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 //   @Type(value = Car.class, name = "Car"),
 //   @Type(value = Motorbike.class, name = "Motorbike")
 // })
-public interface Vehicle {
+public interface Vehicle_ {
 
   public String getType();
 }

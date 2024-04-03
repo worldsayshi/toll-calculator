@@ -5,30 +5,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.acme.tollCalculator.dataTypes.VehicleDeserializer;
-
 import java.util.*;
 @RestController
 public class TollCalculatorController {
 
     private final TollCalculator tollCalculator;
-    private final VehicleDeserializer vehicleDeserializer;
 
     public TollCalculatorController(
         TollCalculator tollCalculator
-        , VehicleDeserializer vehicleDeserializer
     ) {
         this.tollCalculator = tollCalculator;
-        this.vehicleDeserializer = vehicleDeserializer;
     }
 
     @GetMapping("/get-toll-fee")
     public int getTollFee(
-        @RequestParam(value = "vehicle") String vehicle,
+        @RequestParam(value = "vehicle") TollCalculator.Vehicle vehicle,
         @RequestParam(value = "dates") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date[] dates
     ) {
-        var v = vehicleDeserializer.getVehicleFromString(vehicle);
-        return tollCalculator.getTollFee(v, dates);
+        return tollCalculator.getTollFee(vehicle, dates);
     }
 
 }
