@@ -6,6 +6,7 @@ import com.acme.tollCalculator.dataTypes.Vehicle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -71,15 +72,13 @@ public class TollCalculatorTests {
         assertEquals(0, calculator.getTollFee(vehicle, holidayDate), "Charged on a holiday");
     }
 
-    // Utility methods to create Date instances for testing. Implement these based on your needs.
+    // Utility methods to create Date instances for testing.
     private Date createTime(int hour, int minute) {
-        // Implement this method to create a Date object representing a time of day
-        return null; // Placeholder
+        return Date.from(Instant.parse(String.format("2024-12-12T%02d:%02d:20Z", hour, minute)));
     }
 
     private Date createSpecificDate(int year, int month, int day) {
-        // Implement this method to create a Date object representing a specific date
-        return null; // Placeholder
+        return Date.from(Instant.parse(String.format("%04d-%02d-%02dT10:00:00Z", year, month, day)));
     }
     
     // Assuming TestVehicle is a simple implementation of the Vehicle interface for testing purposes
