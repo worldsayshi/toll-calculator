@@ -42,10 +42,10 @@ for dir in $(find . -name Dockerfile -printf '%h\n'); do
 
     if [ -f $ABS_DIR/pre-docker.sh ]; then
       echo "Found $ABS_DIR/pre-docker.sh, will run it"
-      (cd $ABS_DIR && (nvm use && npm run pre-docker --if-present))
+      (cd $ABS_DIR && ./pre-docker.sh)
       
       if [ $? -ne 0 ]; then
-        echo "npm build failed, aborting docker build"
+        echo "pre-docker.sh script run failed in $ABS_DIR, aborting docker build"
         continue
       fi
     

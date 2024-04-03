@@ -5,7 +5,8 @@ plugins {
 }
 
 group = 'com.acme'
-version = '0.0.1-SNAPSHOT'
+// version is handled as a command line argument! See pre-docker.sh
+// version = '0.0.1-SNAPSHOT'
 
 java {
 	sourceCompatibility = '21'
