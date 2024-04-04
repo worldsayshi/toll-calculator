@@ -15,15 +15,15 @@ public class TollData {
             Vehicle.MILITARY);
 
     public List<TollFeeRule> tollFeeRules = Arrays.asList(
-            new TollFeeRule(6, 0, 8), // 06:00 - 06:29 -> 8
+            new TollFeeRule(6, 0, 8),   // 06:00 - 06:29 -> 8
             new TollFeeRule(6, 30, 13), // 06:30 - 06:59 -> 13
-            new TollFeeRule(7, 0, 18), // 07:00 - 07:59 -> 18
-            new TollFeeRule(8, 0, 13), // 08:00 - 08:29 -> 13
-            new TollFeeRule(8, 30, 8), // 08:30 - 14:59 -> 8
+            new TollFeeRule(7, 0, 18),  // 07:00 - 07:59 -> 18
+            new TollFeeRule(8, 0, 13),  // 08:00 - 08:29 -> 13
+            new TollFeeRule(8, 30, 8),  // 08:30 - 14:59 -> 8
             new TollFeeRule(15, 0, 18), // 15:00 - 16:59 -> 18
             new TollFeeRule(17, 0, 13), // 17:00 - 17:59 -> 13
             new TollFeeRule(18, 30, 8), // 18:00 - 18:29 -> 8
-            new TollFeeRule(18, 0, 0) // else -> 0
+            new TollFeeRule(18, 0, 0)   // else -> 0
     );
 
 
