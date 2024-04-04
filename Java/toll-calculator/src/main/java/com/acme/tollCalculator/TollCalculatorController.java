@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.acme.tollCalculator.TollData.Vehicle;
+
 import java.util.*;
 @RestController
 public class TollCalculatorController {
@@ -19,7 +21,7 @@ public class TollCalculatorController {
 
     @GetMapping("/get-toll-fee")
     public int getTollFee(
-        @RequestParam(value = "vehicle") TollCalculator.Vehicle vehicle,
+        @RequestParam(value = "vehicle") Vehicle vehicle,
         @RequestParam(value = "dates") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date[] dates
     ) {
         return tollCalculator.getTollFee(vehicle, dates);

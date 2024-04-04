@@ -17,9 +17,4 @@ public class TollCalculatorApplication {
 	public TollCalculator tollCalculator() {
 		return new TollCalculator();
 	}
-
-	// @Bean
-	// public VehicleDeserializer vehicleTypeRegistry() {
-	// 	return new VehicleDeserializer();
-	// }
 }

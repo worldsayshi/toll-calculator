@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.acme.tollCalculator.TollCalculator.Vehicle;
+import com.acme.tollCalculator.TollData.Vehicle;
 
 import java.util.*;
 import java.util.stream.*;

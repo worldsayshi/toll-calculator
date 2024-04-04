@@ -1,5 +1,5 @@
 {
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.import.gradle.java.home": "/usr/lib/jvm/java-1.21.0-openjdk-amd64/"
+    "java.import.gradle.java.home": "/usr/lib/jvm/openjdk-21/"
 }

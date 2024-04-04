@@ -3,13 +3,12 @@ package com.acme.tollCalculator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.acme.tollCalculator.TollCalculator.Vehicle;
+import com.acme.tollCalculator.TollData.Vehicle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.*;
 import java.time.Instant;
-import java.util.Calendar;
-import java.util.Date;
 
 public class TollCalculatorTests {
 
@@ -82,5 +81,26 @@ public class TollCalculatorTests {
     private Date createSpecificDate(int year, int month, int day) {
         return Date.from(Instant.parse(String.format("%04d-%02d-%02dT10:00:00Z", year, month, day)));
     }
+
+    // The legacy implementation of getTollFee for a single vehicle
+    public int getTollFee(final Date date, Vehicle vehicle) {
+        if(TollCalculator.isTollFreeDate(date) || TollCalculator.isTollFreeVehicle(vehicle)) return 0;
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTime(date);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        
+        if (hour == 6 && minute >= 0 && minute <= 29) return 8;
+        else if (hour == 6 && minute >= 30 && minute <= 59) return 13;
+        else if (hour == 7 && minute >= 0 && minute <= 59) return 18;
+        else if (hour == 8 && minute >= 0 && minute <= 29) return 13;
+        else if (hour >= 8 && hour <= 14 && minute >= 30 && minute <= 59) return 8;
+        else if (hour == 15 && minute >= 0 && minute <= 29) return 13;
+        else if (hour == 15 && minute >= 0 || hour == 16 && minute <= 59) return 18;
+        else if (hour == 17 && minute >= 0 && minute <= 59) return 13;
+        else if (hour == 18 && minute >= 0 && minute <= 29) return 8;
+        else return 0;
+      }
 }
 

@@ -1,5 +1,5 @@
 package com.acme.tollCalculator;
-
+import com.acme.tollCalculator.TollData.Vehicle;
 
 import java.util.*;
 import java.util.concurrent.*;
@@ -26,8 +26,8 @@ public class TollCalculator {
       long minutes = timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
 
       if (minutes <= 60) {
-        if (totalFee > 0) totalFee -= tempFee;
-        if (nextFee >= tempFee) tempFee = nextFee;
+        if (totalFee > 0) {totalFee -= tempFee;}
+        if (nextFee >= tempFee) {tempFee = nextFee;}
         totalFee += tempFee;
       } else {
         totalFee += nextFee;
@@ -37,18 +37,18 @@ public class TollCalculator {
     return totalFee;
   }
 
-  private boolean isTollFreeVehicle(Vehicle vehicle) {
+  public static boolean isTollFreeVehicle(Vehicle vehicle) {
     if(vehicle == null) return false;
     return TollData.tollFreeVehicles.contains(vehicle);
   }
 
-  public int getTollFee(final Date date, Vehicle vehicle) {
+  public static int getTollFee(final Date date, Vehicle vehicle) {
     if(isTollFreeDate(date) || isTollFreeVehicle(vehicle)) return 0;
     Calendar calendar = GregorianCalendar.getInstance();
     calendar.setTime(date);
     int hour = calendar.get(Calendar.HOUR_OF_DAY);
     int minute = calendar.get(Calendar.MINUTE);
-
+    
     if (hour == 6 && minute >= 0 && minute <= 29) return 8;
     else if (hour == 6 && minute >= 30 && minute <= 59) return 13;
     else if (hour == 7 && minute >= 0 && minute <= 59) return 18;
@@ -61,7 +61,7 @@ public class TollCalculator {
     else return 0;
   }
 
-  private Boolean isTollFreeDate(Date date) {
+  public static Boolean isTollFreeDate(Date date) {
     Calendar calendar = GregorianCalendar.getInstance();
     calendar.setTime(date);
     int year = calendar.get(Calendar.YEAR);
@@ -86,41 +86,5 @@ public class TollCalculator {
     return false;
   }
 
-  public enum Vehicle {
-    CAR("Car"),
-    MOTORBIKE("Motorbike"),
-    TRACTOR("Tractor"),
-    EMERGENCY("Emergency"),
-    DIPLOMAT("Diplomat"),
-    FOREIGN("Foreign"),
-    MILITARY("Military");
-    private final String type;
-
-    Vehicle(String type) {
-      this.type = type;
-    }
-
-    public String getType() {
-      return type;
-    }
-  }
-
-  public enum TollFreeVehicles {
-    MOTORBIKE("Motorbike"),
-    TRACTOR("Tractor"),
-    EMERGENCY("Emergency"),
-    DIPLOMAT("Diplomat"),
-    FOREIGN("Foreign"),
-    MILITARY("Military");
-    private final String type;
-
-    TollFreeVehicles(String type) {
-      this.type = type;
-    }
-
-    public String getType() {
-      return type;
-    }
-  }
 }
 
