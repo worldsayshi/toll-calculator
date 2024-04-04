@@ -14,7 +14,7 @@ public class TollData {
             Vehicle.FOREIGN,
             Vehicle.MILITARY);
 
-    public List<TollFeeRule> tollFeeRules = Arrays.asList(
+    public static List<TollFeeRule> tollFeeRules = Arrays.asList(
             new TollFeeRule(6, 0, 8),   // 06:00 - 06:29 -> 8
             new TollFeeRule(6, 30, 13), // 06:30 - 06:59 -> 13
             new TollFeeRule(7, 0, 18),  // 07:00 - 07:59 -> 18
@@ -23,8 +23,8 @@ public class TollData {
             new TollFeeRule(15, 0, 13), // 15:00 - 15:29 -> 18
             new TollFeeRule(15, 30, 18),// 15:30 - 16:59 -> 18
             new TollFeeRule(17, 0, 13), // 17:00 - 17:59 -> 13
-            new TollFeeRule(18, 30, 8), // 18:00 - 18:29 -> 8
-            new TollFeeRule(18, 0, 0)   // else -> 0
+            new TollFeeRule(18, 0, 8),  // 18:00 - 18:29 -> 8
+            new TollFeeRule(18, 30, 0)  // else -> 0
     );
 
 
@@ -55,15 +55,5 @@ public class TollData {
      * another.
      * The rate given in the rule is to be used until the next cutoff point.
      */
-    public class TollFeeRule {
-        final public int hour;
-        final public int minute;
-        final public int rate;
-
-        public TollFeeRule(int hour, int minute, int rate) {
-            this.hour = hour;
-            this.minute = minute;
-            this.rate = rate;
-        }
-    }
+    public record TollFeeRule(int hour, int minute, int rate) {}
 }

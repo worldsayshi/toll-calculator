@@ -57,21 +57,45 @@ public class TollCalculator {
     calendar.setTime(date);
     int hour = calendar.get(Calendar.HOUR_OF_DAY);
     int minute = calendar.get(Calendar.MINUTE);
-    
-    if (hour == 6 && minute >= 0 && minute <= 29) return 8;
-    else if (hour == 6 && minute >= 30 && minute <= 59) return 13;
-    else if (hour == 7 && minute >= 0 && minute <= 59) return 18;
-    else if (hour == 8 && minute >= 0 && minute <= 29) return 13;
-    else if (hour == 8 && minute >= 30
-            || hour >= 9 && hour <= 13
-            || hour == 14 && minute >= 0 && minute <= 59) return 8;
-    else if (hour == 15 && minute >= 0 && minute <= 29) return 13;
-    else if (hour == 15 && minute >= 30
-            || hour == 16 && minute <= 59) return 18;
-    else if (hour == 17 && minute >= 0 && minute <= 59) return 13;
-    else if (hour == 18 && minute >= 0 && minute <= 29) return 8;
-    else return 0;
+
+    TollData.TollFeeRule ruleToApply = null;
+    // The rule that should be applied is the last rule
+    // that covers the current time
+    for (var rule : TollData.tollFeeRules) {
+      if (hour >= rule.hour()) {
+        if (hour == rule.hour() && minute >= rule.minute()
+          || hour > rule.hour()
+        ) {
+          ruleToApply = rule;
+        }
+      }
+    }
+    if(ruleToApply == null) return 0;
+    return ruleToApply.rate();
   }
+
+  // Legacy implementation of time of day fees (kept for discussions)
+  //  public int getTollFeeLegacy(final Date date, Vehicle vehicle) {
+  //    if(isTollFreeDate(date) || isTollFreeVehicle(vehicle)) return 0;
+  //    Calendar calendar = GregorianCalendar.getInstance();
+  //    calendar.setTime(date);
+  //    int hour = calendar.get(Calendar.HOUR_OF_DAY);
+  //    int minute = calendar.get(Calendar.MINUTE);
+  //
+  //    if (hour == 6 && minute >= 0 && minute <= 29) return 8;
+  //    else if (hour == 6 && minute >= 30 && minute <= 59) return 13;
+  //    else if (hour == 7 && minute >= 0 && minute <= 59) return 18;
+  //    else if (hour == 8 && minute >= 0 && minute <= 29) return 13;
+  //    else if (hour == 8 && minute >= 30
+  //            || hour >= 9 && hour <= 13
+  //            || hour == 14 && minute >= 0 && minute <= 59) return 8;
+  //    else if (hour == 15 && minute >= 0 && minute <= 29) return 13;
+  //    else if (hour == 15 && minute >= 30
+  //            || hour == 16 && minute <= 59) return 18;
+  //    else if (hour == 17 && minute >= 0 && minute <= 59) return 13;
+  //    else if (hour == 18 && minute >= 0 && minute <= 29) return 8;
+  //    else return 0;
+  //  }
 
   public Boolean isTollFreeDate(Date date) {
     Calendar calendar = GregorianCalendar.getInstance();
