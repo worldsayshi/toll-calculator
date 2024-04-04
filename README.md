@@ -41,6 +41,8 @@
 # Known issues
 
 - Some "special case" holidays are not covered. Like Midsommarafton. These needs to be handled either through an admin GUI or by overriding.
+- Dates are handled a bit inconsistently, could hide bugs
+    - Verify that timezones handled correctly if the server is deployed in another time zone
 
 # Commands
 

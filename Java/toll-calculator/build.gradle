@@ -20,6 +20,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0'
+	implementation group: 'de.focus-shift', name: 'jollyday-core', version: '0.27.0'
+	implementation group: 'de.focus-shift', name: 'jollyday-jackson', version: '0.27.0'
 }
 
 tasks.named('test') {
