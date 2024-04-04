@@ -32,6 +32,7 @@ sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/npx" "/usr/local/bin/npx"
 - [X] Add swagger
 - [X] Add initial unit tests
 - [X] Add Dockerfile
+- [X] Refactor java code a bit.
 - [ ] Fix failing test
 - [/] Add more unit tests
     (verify that the requirements are filled with the tests)
