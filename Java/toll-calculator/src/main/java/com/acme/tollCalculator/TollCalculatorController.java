@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.acme.tollCalculator.TollData.Vehicle;
 
 import java.util.*;
-@RestController
+@RestController("/api")
 public class TollCalculatorController {
 
     private final TollCalculator tollCalculator;
