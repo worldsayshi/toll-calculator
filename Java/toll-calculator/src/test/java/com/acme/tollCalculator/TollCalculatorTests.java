@@ -38,8 +38,7 @@ public class TollCalculatorTests {
     public void testMaximumFeePerDay() {
         TollCalculator calculator = new TollCalculator();
         Vehicle vehicle = Vehicle.CAR;
-        
-        // Example: specify multiple times throughout a day that would exceed the maximum daily fee
+
         Date[] dates = {createTime(7, 0), createTime(8, 30), createTime(9, 30), createTime(15, 0), createTime(17, 0)};
         
         assertTrue(calculator.getTollFee(vehicle, dates) <= 60, "Total fee for one day exceeded the maximum limit of 60 SEK");
@@ -49,12 +48,14 @@ public class TollCalculatorTests {
     public void testChargeOncePerHour() {
         TollCalculator calculator = new TollCalculator();
         Vehicle vehicle = Vehicle.CAR;
+
+        Date withinSameHour1 = createTime(6, 0);
+        Date withinSameHour2 = createTime(6, 45);
         
-        // Example: times within the same hour, expect to be charged for the highest fee only
-        Date withinSameHour1 = createTime(8, 0);
-        Date withinSameHour2 = createTime(8, 15); // Assuming this should incur a higher fee
-        
-        int expectedFee = Math.max(calculator.getTollFee(vehicle, withinSameHour1), calculator.getTollFee(vehicle, withinSameHour2));
+        int expectedFee = Math.max(
+                calculator.getTollFee(vehicle, withinSameHour1),
+                calculator.getTollFee(vehicle, withinSameHour2)
+        );
         assertEquals(expectedFee, calculator.getTollFee(vehicle, withinSameHour1, withinSameHour2), "Did not charge the highest fee within the same hour");
     }
 
@@ -63,9 +64,7 @@ public class TollCalculatorTests {
         TollCalculator calculator = new TollCalculator();
         Vehicle feeFreeVehicle = Vehicle.EMERGENCY;
         
-        Date tenOClock = createTime(10, 0);
-        
-        assertEquals(0, calculator.getTollFee(feeFreeVehicle, tenOClock), "Emergency vehicle was incorrectly charged");
+        assertEquals(0, calculator.getTollFee(feeFreeVehicle, createTime(10, 0)), "Emergency vehicle was incorrectly charged");
     }
 
     @Test
@@ -88,7 +87,9 @@ public class TollCalculatorTests {
         assertEquals(0, calculator.getTollFee(vehicle, createSpecificDate(2023, 6, 23)), "Charged on midsommarafton!");
     }
 
-    // Utility methods to create Date instances for testing.
+
+    /* Utility methods to create Date instances for testing. */
+
     private Date createTime(int hour, int minute) {
         return Date.from(
                 LocalDateTime.of(
@@ -103,7 +104,6 @@ public class TollCalculatorTests {
                         year,month,day,10,0
                 ).atZone(ZoneId.systemDefault()).toInstant()
         );
-        // return Date.from(Instant.parse(String.format("%04d-%02d-%02dT10:00:00Z", year, month, day)));
     }
 }
 
