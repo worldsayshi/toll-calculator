@@ -41,8 +41,6 @@ public class VehicleEventController {
         LocalDateTime startOfMonth = YearMonth.of(year, month).atDay(1).atStartOfDay();
         LocalDateTime endOfMonth = YearMonth.of(year, month).atEndOfMonth().atTime(23, 59, 59);
 
-        vehicleEventRepository.findByRegistrationNumberAndEventDateBetween(registrationNumber, startOfMonth, endOfMonth);
-
         // Fetch events for the registration number within the specified date range
         List<VehicleEvent> events = vehicleEventRepository.findByRegistrationNumberAndEventDateBetween(registrationNumber, startOfMonth, endOfMonth);
 

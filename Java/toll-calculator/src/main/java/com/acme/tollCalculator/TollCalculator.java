@@ -24,6 +24,7 @@ public class TollCalculator {
    * @return - the total toll fee for that day
    */
   public int getTollFee(Vehicle vehicle, Date... dates) {
+    if(dates.length == 0) return 0;
     Date intervalStart = dates[0];
     int totalFee = 0;
     for (Date date : dates) {
