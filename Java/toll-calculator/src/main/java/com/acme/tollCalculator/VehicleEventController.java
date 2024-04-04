@@ -53,5 +53,5 @@ public class VehicleEventController {
         return tollCalculator.getTollFee(vehicle, dates);
     }
 
-    }
+}
 

@@ -60,6 +60,13 @@ public class TollCalculatorTests {
     }
 
     @Test
+    public void testEmptyDateArray() {
+        TollCalculator calculator = new TollCalculator();
+        assertEquals(0, calculator.getTollFee(Vehicle.CAR), "Fee should be 0 if no dates are provided");
+        assertEquals(0, calculator.getTollFee(Vehicle.CAR, new Date[]{}), "Fee should be 0 if no dates are provided");
+    }
+
+    @Test
     public void testFeeFreeVehicleTypes() {
         TollCalculator calculator = new TollCalculator();
         Vehicle feeFreeVehicle = Vehicle.EMERGENCY;
