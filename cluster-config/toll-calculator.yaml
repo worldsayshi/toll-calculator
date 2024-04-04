@@ -52,4 +52,19 @@ spec:
         image: pfredelius/toll-calculator:0.0.8
         ports:
         - containerPort: 8080
+        env:
+        # SQL conf for the chat sessions
+          - name: VEHICLE_EVENTS_SQL_HOST
+            value: vehicle-events-pg-rw.apps.svc.cluster.local
+          - name: VEHICLE_EVENTS_SQL_PORT
+            value: "5432"
+          - name: VEHICLE_EVENTS_SQL_USERNAME
+            value: "app"
+          - name: VEHICLE_EVENTS_SQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: vehicle-events-pg-app
+                key: password
+          - name: VEHICLE_EVENTS_SQL_DB
+            value: "app"
 ---

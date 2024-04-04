@@ -9,4 +9,4 @@ spec:
 
   storage:
     size: 0.5Gi
-    storageClass: local-storage
+    storageClass: hostpath
