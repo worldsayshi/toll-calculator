@@ -26,10 +26,13 @@
     Presumably the toll stations need to connect to this service over the internet. To ensure safe operation each toll station client software should authenticate itself when connecting to this service. Suggestion: Set up a procedure for generating API keys, preferably this procedure can be done through the Admin GUI.
 - Storage backups
     Vehicle events should be safely and automatically backed up with a reasonable frequency.
+- Manage Database migrations
+    A tool such as Flyway should be used to ensure that we have the evolution of the database schema under control.
 - Billing
-    A separate solution should be set up to handle billing the vehicle owners. Before doing this additional requirements need to be collected.
+    A separate solution should be set up to handle billing the vehicle owners. Before doing this additional requirements need to be collected. It could perhaps make sense to keep the Vehicle Events in that service.
 - Admin GUI and User authentication
     Some parameters of the requirements could be expected to change as the system is evaluated. It could be a good idea to allow an administrator to adjust these.
+    One important use case is administration of public holidays. Another is the ability to add exceptions for certain unforseen events.
     For this to work in a secure way we also need a way to authenticate users. Preferably this would integrate with existing customer SSO solution. This could be accomplished with oauth2-proxy and Keycloak.
     One additional nice to have use case for such Admin GUI could be a dashboard showing a statistical overview of toll station events. This could be achieved with Grafana.
     - Allow adminitrating public holidays

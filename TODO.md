@@ -40,8 +40,9 @@ sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/npx" "/usr/local/bin/npx"
 - [/] Make it deployable to k8s?
     - [X] Verify it is up and running
 - [X] Add playwright tests
-- [ ] Fix RestController types and annotations to make swagger spec more useful
+- [X] Fix RestController types and annotations to make swagger spec more useful
 - [ ] Add more playwright tests?
+- [ ] Add Vehicle Event storage
 
 - Extensions:
     - Storage use case

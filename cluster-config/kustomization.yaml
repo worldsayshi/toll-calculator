@@ -1,5 +1,7 @@
 resources:
 - https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.0/deploy/static/provider/cloud/deploy.yaml
+- https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.22/releases/cnpg-1.22.0.yaml
 - apps-ns.yaml
+- vehicle-events-pg.yaml
 - toll-calculator.yaml
 
