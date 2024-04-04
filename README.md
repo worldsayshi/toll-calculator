@@ -10,9 +10,11 @@
 
 ## Outstanding issues
 
-- Deploy environment
+- [X] Deploy environment
     The service needs to be deployed somewhere.
     Suggestion: Set it up in kubernetes (or specifically k3s). Here we should consider where the customer is keeping the rest of the infrastructure.
+- [ ] Make sure that dates are handled correctly
+    Java date/time API is a mess.
 - Storing vehicle events
     Unless we can assume that there is another service built with the purpose of keeping track of when vehicles pass through toll stations we need to track this.
     For this purpose a SQL database should be set up with a table with car registration number and date columns.
@@ -26,14 +28,19 @@
     Vehicle events should be safely and automatically backed up with a reasonable frequency.
 - Billing
     A separate solution should be set up to handle billing the vehicle owners. Before doing this additional requirements need to be collected.
-- Admin GUI and User authentication (nice to have)
+- Admin GUI and User authentication
     Some parameters of the requirements could be expected to change as the system is evaluated. It could be a good idea to allow an administrator to adjust these.
     For this to work in a secure way we also need a way to authenticate users. Preferably this would integrate with existing customer SSO solution. This could be accomplished with oauth2-proxy and Keycloak.
     One additional nice to have use case for such Admin GUI could be a dashboard showing a statistical overview of toll station events. This could be achieved with Grafana.
+    - Allow adminitrating public holidays
 - Continuous Integration
     A number of steps can be taken to improve CI/CD maturity of the project:
     - Use ArgoCD and image automation to automate deployment to a test environment
     - Run the e2e tests with playwright as an agent in the cluster automatically after the automatic deployment and present the results
+
+# Known issues
+
+- Some "special case" holidays are not covered. Like Midsommarafton. These needs to be handled either through an admin GUI or by overriding.
 
 # Commands
 
