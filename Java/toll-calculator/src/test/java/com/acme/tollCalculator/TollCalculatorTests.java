@@ -54,11 +54,11 @@ public class TollCalculatorTests {
     @Test
     public void testFeeFreeVehicleTypes() {
         TollCalculator calculator = new TollCalculator();
-        Vehicle feeFreeVehicle = Vehicle.EMERGENCY; // Assuming "Emergency" type vehicles are fee-free
+        Vehicle feeFreeVehicle = Vehicle.EMERGENCY;
         
-        Date anyTime = createTime(10, 0); // Any time that would normally incur a fee
+        Date tenOClock = createTime(10, 0);
         
-        assertEquals(0, calculator.getTollFee(feeFreeVehicle, anyTime), "Fee-free vehicle was incorrectly charged");
+        assertEquals(0, calculator.getTollFee(feeFreeVehicle, tenOClock), "Emergency vehicle was incorrectly charged");
     }
 
     @Test
