@@ -15,49 +15,22 @@ import java.time.Instant;
 public class TollCalculatorTests {
 
 
-    // 06:00 - 06:29 -> 8
-    // 06:30 - 06:59 -> 13
-    // 07:00 - 07:59 -> 18
-    // 08:00 - 08:29 -> 13
-    // 08:30 - 14:59 -> 8
-    // 15:00 - 16:59 -> 18
-    // 17:00 - 17:59 -> 13
-    // 18:00 - 18:29 -> 8
-    // else -> 0
     @Test
     public void testFeesVaryByTimeOfDay() {
         TollCalculator calculator = new TollCalculator();
         Vehicle vehicle = Vehicle.CAR;
-        
-        // Example: specify times that should incur different fees
-        Date lowFeeTime = createTime(10, 0); // Time that should incur a low fee (8 SEK)
-        Date highFeeTime = createTime(7, 14); // Rush-hour time expected to incur high fee (18 SEK)
 
-        assertEquals(8, calculator.getTollFee(vehicle, lowFeeTime), "Fee not 8 for low-fee time");
-        assertEquals(18, calculator.getTollFee(vehicle, highFeeTime), "Fee not 18 for high-fee time");
-        assertTrue(calculator.getTollFee(vehicle, lowFeeTime) >= 8 && calculator.getTollFee(vehicle, lowFeeTime) <= 18, "Fee outside expected range for low-fee time");
-        assertTrue(calculator.getTollFee(vehicle, highFeeTime) == 18, "Expected high fee during rush hour not applied");
-    }
-
-    // The legacy implementation of getTollFee for a single vehicle
-    public int getTollFee(final Date date, Vehicle vehicle) {
-        if(new TollCalculator().isTollFreeDate(date) || TollCalculator.isTollFreeVehicle(vehicle)) return 0;
-        Calendar calendar = GregorianCalendar.getInstance();
-        calendar.setTime(date);
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
-
-
-        if (hour == 6 && minute >= 0 && minute <= 29) return 8;
-        else if (hour == 6 && minute >= 30 && minute <= 59) return 13;
-        else if (hour == 7 && minute >= 0 && minute <= 59) return 18;
-        else if (hour == 8 && minute >= 0 && minute <= 29) return 13;
-        else if (hour >= 8 && hour <= 14 && minute >= 30 && minute <= 59) return 8;
-        else if (hour == 15 && minute >= 0 && minute <= 29) return 13;
-        else if (hour == 15 && minute >= 0 || hour == 16 && minute <= 59) return 18;
-        else if (hour == 17 && minute >= 0 && minute <= 59) return 13;
-        else if (hour == 18 && minute >= 0 && minute <= 29) return 8;
-        else return 0;
+        assertEquals(0, calculator.getTollFee(vehicle, createTime(2, 32)));
+        assertEquals(8, calculator.getTollFee(vehicle, createTime(6, 12)));
+        assertEquals(13, calculator.getTollFee(vehicle, createTime(6, 47)));
+        assertEquals(18, calculator.getTollFee(vehicle, createTime(7, 14)));
+        assertEquals(13, calculator.getTollFee(vehicle, createTime(8, 5)));
+        assertEquals(8, calculator.getTollFee(vehicle, createTime(10, 0)));
+        assertEquals(13, calculator.getTollFee(vehicle, createTime(15, 1)));
+        assertEquals(18, calculator.getTollFee(vehicle, createTime(15, 30)));
+        assertEquals(13, calculator.getTollFee(vehicle, createTime(17, 44)));
+        assertEquals(8, calculator.getTollFee(vehicle, createTime(18, 10)));
+        assertEquals(0, calculator.getTollFee(vehicle, createTime(18, 34)));
     }
 
 
