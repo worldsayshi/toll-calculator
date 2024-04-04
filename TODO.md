@@ -1,3 +1,7 @@
+# Todo's and such
+
+This TODO is the personal ticket system of the developer (me).
+
 ## How the app was initially created:
 - https://start.spring.io/
 - add spring web dependency
@@ -18,7 +22,6 @@ sudo apt install openjdk-21-jre-headless
 
 ## playwright
 
-
 sudo npx playwright install-deps
 
 Workaround for installing npm using nvm:
@@ -37,18 +40,19 @@ sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/npx" "/usr/local/bin/npx"
 - [X] Use tollFeeRules list
 - [X] Add more unit tests
     (verify that the requirements are filled with the tests)
-- [/] Make it deployable to k8s?
+- [X] Make it deployable to k8s?
     - [X] Verify it is up and running
 - [X] Add playwright tests
 - [X] Fix RestController types and annotations to make swagger spec more useful
 - [ ] Add more playwright tests?
-- [ ] Add Vehicle Event storage
+- [X] Add Vehicle Event storage
+- [ ] Add initial Admin GUI
 
 - Extensions:
-    - Storage use case
-        - Add database storage requirements
-        - Add database deployment
-        - Add backup
-        - Add code for database use case
-    - ChatGPT API assistant
+    - [X] Storage use case
+        - [X] Add database storage requirements
+        - [X] Add database deployment
+        - [-] Add backup
+        - [x] Add code for database use case
+    - ChatGPT API assistant??
         - swagger + chatgpt => ... => profit
